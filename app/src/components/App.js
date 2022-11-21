@@ -29,6 +29,10 @@ const router = createBrowserRouter([
     path: "/results",
     element: <Results></Results>,
   },
+  {
+    path: "/submit",
+    element: <Submission></Submission>,
+  },
 ]);
 
 function App() {
