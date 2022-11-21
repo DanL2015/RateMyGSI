@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "react-router-dom": "^6.4.3",
     "vivid-studio": "^0.11.1"
   }
 }

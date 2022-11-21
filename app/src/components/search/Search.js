@@ -10,7 +10,7 @@ function Search() {
     <div>
       <Navbar></Navbar>
       <div className="center-container">
-        <Image src={logo} height="20%" width="20%" fit="contain"></Image>
+        <Image src={logo} height="20%" width="20%" fit="contain"></Image>{" "}
         <Searchbar></Searchbar>
       </div>
     </div>

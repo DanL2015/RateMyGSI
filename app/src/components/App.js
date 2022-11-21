@@ -5,11 +5,13 @@ import Profile from "./profile/Profile";
 import Results from "./results/Results";
 import Search from "./search/Search";
 import Submission from "./submission/Submission";
+import ErrorPage from "./error/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Search></Search>,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/search",
@@ -18,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/about",
     element: <About></About>,
+  },
+  {
+    path: "/results/:resultid",
+    element: <Results></Results>,
   },
   {
     path: "/results",
