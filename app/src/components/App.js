@@ -6,6 +6,7 @@ import Results from "./results/Results";
 import Search from "./search/Search";
 import Submission from "./submission/Submission";
 import ErrorPage from "./error/Error";
+import Login from "./login/Login";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/profile/:profileid",
     element: <Profile></Profile>,
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
   },
 ]);
 
