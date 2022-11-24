@@ -33,6 +33,10 @@ const router = createBrowserRouter([
     path: "/submit",
     element: <Submission></Submission>,
   },
+  {
+    path: "/profile/:profileid",
+    element: <Profile></Profile>,
+  },
 ]);
 
 function App() {
