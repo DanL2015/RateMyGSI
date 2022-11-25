@@ -1,15 +1,10 @@
 // Page for GSI Profiles
-import { SvgIcon } from "@mui/material";
+import { Rating, SvgIcon } from "@mui/material";
 import { useParams } from "react-router-dom";
-import {
-  Email,
-  LinkedIn,
-  Star,
-  StarBorderOutlined,
-  StarHalf,
-} from "@mui/icons-material";
+import { Email, LinkedIn } from "@mui/icons-material";
 import Navbar from "../shared/Navbar";
 import "../../css/Profile.css";
+import Comment from "./Comment";
 
 function Profile() {
   //profileId stores the id passed in through the link
@@ -21,14 +16,7 @@ function Profile() {
   let name = "Johnny Bolton";
   let rating = 2.5; //out of 5
   let ratingCount = 20;
-  let ratingArray = []; //in order to display in jsx
-  //Converts the rating to star icons
-  for (let i = 1; i <= 5; i++) {
-    if (i - rating <= 0) ratingArray.push(<SvgIcon component={Star}></SvgIcon>);
-    else if (i - rating < 1)
-      ratingArray.push(<SvgIcon component={StarHalf}></SvgIcon>);
-    else ratingArray.push(<SvgIcon component={StarBorderOutlined}></SvgIcon>);
-  }
+
   let classesTaught = ["Math 1B"];
   let linkedInLink = "https://linkedin.com/jbolton";
   let emailLink = "johnnybolton@berkeley.edu";
@@ -55,10 +43,12 @@ function Profile() {
         {/* Left Column */}
         <div>
           <h1>{name}</h1>
-          <h1>
-            {ratingArray.map((i) => i)} {rating}/5 based on {ratingCount}{" "}
-            ratings.
-          </h1>
+          <div>
+            <Rating value={rating} precision={0.5} readOnly></Rating>
+            <h1>
+              {rating}/5 based on {ratingCount} ratings.
+            </h1>
+          </div>
           <div className="inline-container">
             Classes Taught:
             {classesTaught.map((i) => (
@@ -98,17 +88,14 @@ function Profile() {
       </div>
       {/* Ratings */}
       <div className="ratings-container">
-        {ratings.map((i) => {
-          return (
-            <div className="rating-container">
-              <div className="inline-container">
-                <div>{i.name}</div>
-                <div>Rating: {i.rating}/5</div>
-              </div>
-              <div>{i.review}</div>
-            </div>
-          );
-        })}
+        {ratings.map((i, index) => (
+          <Comment
+            id={index}
+            name={i.name}
+            rating={i.rating}
+            review={i.review}
+          ></Comment>
+        ))}
       </div>
     </div>
   );
