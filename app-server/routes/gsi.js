@@ -4,13 +4,13 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 
-const User = require("../model/User");
+const User = require("../model/Gsi");
 const auth = require("../middleware/auth");
 
 router.post(
     "/signup",
     [
-        check("username", "Please Enter a Valid Username").not().isEmpty(),
+        check("name", "Please Enter a Valid Username").not().isEmpty(),
         check("email", "Please enter a valid email").isEmail(),
         check("password", "Please enter a valid password").isLength({min:6,}),
     ],
@@ -22,7 +22,7 @@ router.post(
             });
         }
 
-        const { username, email, password } = req.body;
+        const { name, email } = req.body;
         try{
             let user = await User.findOne({
                 email,
