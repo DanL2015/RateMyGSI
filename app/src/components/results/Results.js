@@ -20,6 +20,11 @@ function Results() {
       rating: 0,
       classes: ["random class"],
     },
+    { id: 3,
+      name: "random randy",
+      rating: 4,
+      classes: ["EECS"],
+    }, 
   ];
   return (
     <div>

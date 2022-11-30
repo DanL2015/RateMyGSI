@@ -62,10 +62,6 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
-
-
-/*   submiting new commont for a gsi?
-
 app.post('/post', (req, res) => {
   if (data[req.body.id]) {
     throw new Error("Comment exists!")
@@ -80,4 +76,3 @@ app.post('/post/:postId/comment', (req, res) => {
   post.comments = [...post.comments, req.body.newComment]
   res.send(post)
 })
-*/
