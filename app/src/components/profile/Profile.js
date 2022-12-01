@@ -5,36 +5,31 @@ import { Email, LinkedIn } from "@mui/icons-material";
 import Navbar from "../shared/Navbar";
 import "../../css/Profile.css";
 import Comment from "./Comment";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Profile() {
-  //profileId stores the id passed in through the link
-  //No problem with empty profileId: the link will not work
-  let profileId = useParams();
+  let { profileid } = useParams();
+  const [data, setData] = useState();
 
-  //The following variables are all placeholders
-  //This will be replaced with calls to the mongodb later.
-  let name = "Johnny Bolton";
-  let rating = 2.5; //out of 5
-  let ratingCount = 20;
+  const getData = () => {
+    axios
+      .get(`http://localhost:4000/gsi/${profileid}`)
+      .then((data) => {
+        console.log(data.data);
+        setData(data.data);
+      })
+      .catch((error) => console.log(error));
+  };
 
-  let classesTaught = ["Math 1B"];
-  let linkedInLink = "https://linkedin.com/jbolton";
-  let emailLink = "johnnybolton@berkeley.edu";
-  let pronouns = "he/him/his";
-  let major = "MA, Mathematics";
-  let semesters = ["Spring 2022", "Fall 2022"];
-  let ratings = [
-    {
-      name: "Oski B.",
-      rating: "5",
-      review: "Highly recommended.",
-    },
-    {
-      name: "Anonymous Bear",
-      rating: "2",
-      review: "Too fast.",
-    },
-  ];
+  useEffect(() => {
+    getData();
+  }, []);
+
+  console.log(data);
+  if (!data) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
@@ -42,27 +37,28 @@ function Profile() {
       <div className="profile-container">
         {/* Left Column */}
         <div>
-          <h1>{name}</h1>
+          <h1>{data.name}</h1>
           <div>
-            <Rating value={rating} precision={0.5} readOnly></Rating>
+            <Rating value={data.rating} precision={0.5} readOnly></Rating>
             <h1>
-              {rating}/5 based on {ratingCount} ratings.
+              {data.rating}/5 based on {data.ratingCount}
+              ratings.
             </h1>
           </div>
           <div className="inline-container">
             Classes Taught:
-            {classesTaught.map((i) => (
+            {data.classesTaught.map((i) => (
               <p>{i}</p>
             ))}
           </div>
           <div>
             <div className="inline-container">
               <SvgIcon component={LinkedIn}></SvgIcon>
-              <p>{linkedInLink}</p>
+              <p>{data.linkedin}</p>
             </div>
             <div className="inline-container">
               <SvgIcon component={Email}></SvgIcon>
-              <p>{emailLink}</p>
+              <p>{data.email}</p>
             </div>
           </div>
         </div>
@@ -70,16 +66,16 @@ function Profile() {
         <div>
           <div className="inline-container">
             <h1>Pronouns: </h1>
-            <p>{pronouns}</p>
+            <p>{data.pronouns}</p>
           </div>
           <div className="inline-container">
             <h1>Major: </h1>
-            <p>{major}</p>
+            <p>{data.major}</p>
           </div>
           <div className="inline-container">
             <h1>Semesters Taught: </h1>
             <div>
-              {semesters.map((i) => (
+              {data.semesters.map((i) => (
                 <p>{i}</p>
               ))}
             </div>
@@ -88,7 +84,7 @@ function Profile() {
       </div>
       {/* Ratings */}
       <div className="ratings-container">
-        {ratings.map((i, index) => (
+        {data.comments.map((i, index) => (
           <Comment
             id={index}
             name={i.name}
