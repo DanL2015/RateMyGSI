@@ -8,6 +8,9 @@ import Submission from "./submission/Submission";
 import ErrorPage from "./error/Error";
 import Login from "./login/Login";
 
+//font
+import "./fonts/rivalsans-black.otf";
+
 const router = createBrowserRouter([
   {
     path: "/",
