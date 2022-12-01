@@ -18,8 +18,8 @@ function About() {
             section—whether a discussion or a lab—without knowing much
             information at all about their choices of GSIs. Because a GSI can
             have such a big impact on the quality of a class and therefore a
-            student’s quality of education here at UC Berkeley, we thought Rate
-            My GSI would be a great way to help students make these important
+            student’s quality of education here at UC Berkeley, we thought RateMyGSI 
+          would be a great way to help students make these important
             decisions during enrollment season.
           </p>
           <p className="about-text">
@@ -31,13 +31,13 @@ function About() {
             and inspected by one of our official moderators.
           </p>
           <p className="about-text">
-            Berkeley students have added more than 200 ratings, 50 GSIs to Rate
-            My GSI. More than 500 students each month are using RateMy
+            Berkeley students have added more than 200 ratings, 50 GSIs to RateMyGSI. 
+            More than 500 students each month are using RateMy
             GSI – join the fun!
           </p>
         </div>
         <div className="about-right">
-          <Image src={Berkeley} width="50%" height="50%"/>
+          <Image src={Berkeley} width="102%" height="55%"/>
         </div>
       </div>
     </div>
