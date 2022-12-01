@@ -32,8 +32,8 @@ function About() {
           </p>
           <p className="about-text">
             Berkeley students have added more than 200 ratings, 50 GSIs to Rate
-            My GSI. More than 500 students each month are using Rate My
-            Professors – join the fun!
+            My GSI. More than 500 students each month are using RateMy
+            GSI – join the fun!
           </p>
         </div>
         <div className="about-right">
