@@ -42,7 +42,7 @@ function Profile() {
       <div className="profile-container">
         {/* Left Column */}
         <div>
-          <h1>{name}</h1>
+          <h1 style={{fontFamily: "HeaderFont"}}> {name} </h1>
           <div>
             <Rating value={rating} precision={0.5} readOnly></Rating>
             <h1>
