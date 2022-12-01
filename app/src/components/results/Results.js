@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import Navbar from "../shared/Navbar";
 import ResultCard from "./ResultCard";
+import "../../css/Results.css";
 
 function Results() {
   //Filter is a search filter (based on url)
@@ -29,7 +30,7 @@ function Results() {
   return (
     <div>
       <Navbar></Navbar>
-      <h1>Results</h1>
+      <h6>Search Results</h6>
       <div>
         {gsiResults.map((gsi) => (
           <ResultCard

@@ -3,7 +3,10 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
-
+h1{
+    font-family: "HeaderFont";
+    font-size: 40px;
+}
 .inline-container {
     display: flex;
     flex-direction: row;
