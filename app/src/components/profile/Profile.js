@@ -1,5 +1,12 @@
 // Page for GSI Profiles
-import { Rating, SvgIcon } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Rating,
+  SvgIcon,
+  TextField,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
 import { Email, LinkedIn } from "@mui/icons-material";
 import Navbar from "../shared/Navbar";
@@ -11,12 +18,15 @@ import { useEffect, useState } from "react";
 function Profile() {
   let { profileid } = useParams();
   const [data, setData] = useState();
+  const [newRating, setNewRating] = useState(0);
+  const [newName, setNewName] = useState("");
+  const [newComment, setNewComment] = useState("");
+  const [error, setError] = useState("");
 
   const getData = () => {
     axios
       .get(`http://localhost:4000/gsi/${profileid}`)
       .then((data) => {
-        console.log(data.data);
         setData(data.data);
       })
       .catch((error) => console.log(error));
@@ -26,7 +36,26 @@ function Profile() {
     getData();
   }, []);
 
-  console.log(data);
+  const submitComment = () => {
+    if (!newName) setError("Please input your name");
+    else if (!newRating) setError("Please input a rating");
+    else {
+      axios
+        .post(`http://localhost:4000/comment/${profileid}/post`, {
+          name: newName,
+          rating: newRating,
+          review: newComment,
+        })
+        .then((res) => {
+          getData();
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   if (!data) {
     return <p>Loading...</p>;
   }
@@ -40,10 +69,7 @@ function Profile() {
           <h1> {data.name} </h1>
           <div>
             <Rating value={data.rating} precision={0.5} readOnly></Rating>
-            <h1>
-              {data.rating}/5 based on {data.ratingCount}
-              ratings.
-            </h1>
+            <h1>based on {data.ratingCount} ratings.</h1>
           </div>
           <div className="inline-container">
             Classes Taught:
@@ -92,6 +118,43 @@ function Profile() {
             review={i.review}
           ></Comment>
         ))}
+        {/* New Rating Submission */}
+        <div>
+          <FormControl>
+            <FormLabel>New Comment</FormLabel>
+            <Rating
+              precision={0.5}
+              onChange={(event, newValue) => {
+                setNewRating(newValue);
+              }}
+            ></Rating>
+            <div>{newRating} / 5</div>
+            <TextField
+              required
+              id="outlined-required"
+              placeholder="Name"
+              onChange={(event) => {
+                setNewName(event.target.value);
+              }}
+            ></TextField>
+            <TextField
+              required
+              id="outlined-required"
+              placeholder="Comment here"
+              onChange={(event) => {
+                setNewComment(event.target.value);
+              }}
+            />
+            <Button
+              variant="contained"
+              sx={{ ml: "auto" }}
+              onClick={submitComment}
+            >
+              Send
+            </Button>
+          </FormControl>
+          <div>{error}</div>
+        </div>
       </div>
     </div>
   );
