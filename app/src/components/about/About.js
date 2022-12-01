@@ -37,7 +37,7 @@ function About() {
           </p>
         </div>
         <div className="about-right">
-          <Image src={Berkeley} />
+          <Image src={Berkeley} width="70%" height="70"/>
         </div>
       </div>
     </div>
