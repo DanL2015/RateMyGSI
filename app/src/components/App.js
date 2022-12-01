@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     element: <About></About>,
   },
   {
-    path: "/results/:resultid",
+    path: "/results/:filter",
     element: <Results></Results>,
   },
   {
