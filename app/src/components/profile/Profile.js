@@ -37,11 +37,7 @@ function Profile() {
       <div className="profile-container">
         {/* Left Column */}
         <div>
-<<<<<<< HEAD
           <h1 style={{fontFamily: "HeaderFont"}}> {name} </h1>
-=======
-          <h1>{data.name}</h1>
->>>>>>> b726263c0613d7b1c160c8f03eccd64896bb4f0f
           <div>
             <Rating value={data.rating} precision={0.5} readOnly></Rating>
             <h1>
