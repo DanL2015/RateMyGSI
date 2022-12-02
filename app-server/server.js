@@ -6,6 +6,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
+var cors = require("cors");
+app.use(cors());
 const port = 4000;
 const gsi = require("./model/Gsi");
 
@@ -21,13 +23,23 @@ database.on("error", (err) => {
 });
 
 app.get("/gsis/:filter", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   const data = await gsi
     .find({ name: { $regex: ".*" + req.params.filter + ".*", $options: "i" } })
     .limit(10);
   res.json(data);
 });
 
-app.get("/gsis", async (req, res) => {
+app.get("/allgsis", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   const data = await gsi.find();
   res.json(data);
 });
@@ -36,8 +48,11 @@ app.use(bodyParser.json());
 
 //Add new GSI to database
 app.post("/gsi/post", async (req, res) => {
-  console.log(req.body);
-
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   var newGsi = new gsi({
     name: req.body.name,
     email: req.body.email,
@@ -56,12 +71,22 @@ app.post("/gsi/post", async (req, res) => {
 
 //Get gsis by gsiid
 app.get("/gsi/:gsiid", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   var curGsi = await gsi.findById(req.params.gsiid);
   res.json(curGsi);
 });
 
 //Add new comment to the GSI with gsiid, requires request with a comment
 app.post("/comment/:gsiid/post", async (req, res) => {
+  req.header("Access-Control-Allow-Origin", "*");
+  req.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   var curGsi = await gsi.findById(req.params.gsiid);
   if (!curGsi.comments.length) {
     let comment = req.body;
@@ -87,6 +112,11 @@ app.post("/comment/:gsiid/post", async (req, res) => {
 
 // Get all comment of a GSI with gsiid
 app.get("/comment/:gsiid", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   var curGsi = await gsi.findById(req.params.gsiid);
   res.json(curGsi.comments);
 });
