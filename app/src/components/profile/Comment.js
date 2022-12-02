@@ -9,7 +9,7 @@ function Comment({ id, name, rating, review }) {
         <h1>{name}</h1>
         <Rating value={rating} precision={0.5} readOnly></Rating>
       </div>
-      <div>
+      <div style={{padding:40 }}>
         <p>{review}</p>
       </div>
     </div>

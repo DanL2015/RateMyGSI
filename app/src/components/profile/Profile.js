@@ -73,42 +73,43 @@ function Profile() {
       <Navbar></Navbar>
       <div className="profile-container">
         {/* Left Column */}
-        <div>
-          <h1> {data.name} </h1>
+        <div style = {{}}>
+          <h1 style={{ fontSize: 60, marginBottom: 15}}> {data.name} </h1>
+          
           <div>
             <Rating value={data.rating} precision={0.5} readOnly></Rating>
-            <h1>based on {data.ratingCount} ratings.</h1>
+            <h4>based on {data.ratingCount} ratings.</h4>
           </div>
           <div className="inline-container">
-            Classes Taught:
             {data.classesTaught.map((i) => (
-              <p>{i}</p>
+              <p>Classes taught: {i}</p>
             ))}
           </div>
-          <div>
+          <div >
             <div className="inline-container">
-              <SvgIcon component={LinkedIn}></SvgIcon>
-              <p>{data.linkedin}</p>
+              <SvgIcon component={LinkedIn} style={{ paddingTop: 14}}></SvgIcon>
+              <p style = {{marginLeft: 7}}>{data.linkedin}</p>
             </div>
             <div className="inline-container">
-              <SvgIcon component={Email}></SvgIcon>
-              <p>{data.email}</p>
+              <SvgIcon component={Email} style={{ paddingTop: 14}}></SvgIcon>
+              <p style = {{marginLeft: 7}}>{data.email}</p>
             </div>
           </div>
         </div>
         {/* Right Column */}
         <div>
+          <div className = "space"> </div>
           <div className="inline-container">
-            <h1>Pronouns: </h1>
-            <p>{data.pronouns}</p>
+          <div className="title" >Pronouns: </div>
+          <div className="value">{data.pronouns}</div>
+          </div>
+          <div className="inline-container" >
+            <div className="title" >Major:</div>
+            <div className= "value" >{data.major}</div>
           </div>
           <div className="inline-container">
-            <h1>Major: </h1>
-            <p>{data.major}</p>
-          </div>
-          <div className="inline-container">
-            <h1>Semesters Taught: </h1>
-            <div>
+          <div className="title" >Semesters Taught: </div>
+          <div className="value" style = {{marginLeft: -60}}>
               {data.semesters.map((i) => (
                 <p>{i}</p>
               ))}
@@ -117,7 +118,7 @@ function Profile() {
         </div>
       </div>
       {/* Ratings */}
-      <div className="ratings-container">
+      <div className="ratings-container" style ={{marginTop: 30}}>
         {data.comments.map((i, index) => (
           <Comment
             id={index}
@@ -127,9 +128,12 @@ function Profile() {
           ></Comment>
         ))}
         {/* New Rating Submission */}
-        <div>
+        <div className="new-comment">
           <FormControl>
+            <div className="left-comment">
             <FormLabel>New Comment</FormLabel>
+            </div>
+            <div className="right-comment">
             <Rating
               precision={0.5}
               onChange={(event, newValue) => {
@@ -140,7 +144,7 @@ function Profile() {
             <TextField
               required
               id="outlined-required"
-              placeholder="Name"
+              placeholder="Your name"
               onChange={(event) => {
                 setNewName(event.target.value);
               }}
@@ -149,6 +153,8 @@ function Profile() {
               required
               id="outlined-required"
               placeholder="Comment here"
+          multiline
+          rows={4}
               onChange={(event) => {
                 setNewComment(event.target.value);
               }}
@@ -160,6 +166,7 @@ function Profile() {
             >
               Send
             </Button>
+            </div>
           </FormControl>
           <div>{error}</div>
         </div>

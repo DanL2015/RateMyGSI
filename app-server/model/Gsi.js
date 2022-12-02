@@ -50,28 +50,28 @@ const GsiSchema = mongoose.Schema({
 // export model gsi with GsiSchema
 module.exports = mongoose.model("GSI", GsiSchema);
 
-new module.exports({
-  name: "Mackenzie Moffit",
-  email: "hello@ca.edu",
-  linkedin: "linkedin.com",
-  rating: 4,
-  ratingCount: 20,
-  classesTaught: ["math"],
-  pronouns: "aksdjf",
-  major: "asdf",
-  semesters: ["1", "2"],
-  comments: [
-    {
-      id: 1,
-      name: "joe",
-      rating: 5,
-      review: "good teacher",
-    },
-    {
-      id: 2,
-      name: "jo",
-      rating: 1,
-      review: "bad teacher",
-    },
-  ],
-}).save();
+// new module.exports({
+//   name: "Mackenzie Moffit",
+//   email: "hello@ca.edu",
+//   linkedin: "linkedin.com",
+//   rating: 4,
+//   ratingCount: 20,
+//   classesTaught: ["math"],
+//   pronouns: "aksdjf",
+//   major: "asdf",
+//   semesters: ["1", "2"],
+//   comments: [
+//     {
+//       id: 1,
+//       name: "joe",
+//       rating: 5,
+//       review: "good teacher",
+//     },
+//     {
+//       id: 2,
+//       name: "jo",
+//       rating: 1,
+//       review: "bad teacher",
+//     },
+//   ],
+// }).save();
