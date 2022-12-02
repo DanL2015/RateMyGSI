@@ -1,11 +1,41 @@
-h1 {
-    font-family: "HeaderFont";
-    font-size: 40px;
+.card-header {
+  text-align: left;
+  font-family: "HeaderFont";
+  font-size: 30px;
 }
 
-h6 {
-    font-family: "HeaderFont";
-    font-size: 50px;
+.results-header {
+  text-align: left;
+  margin: 2% 5%;
+  font-family: "HeaderFont";
+  font-size: 60px;
 }
 
+.results-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 5%;
+}
 
+.class-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-family: "Roboto";
+  color: black;
+  font-size: 20px;
+  margin-left: 5em;
+  text-align: left;
+}
+
+.card-sub-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-container {
+  margin: 1em;
+  flex: 40%;
+}

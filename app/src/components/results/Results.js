@@ -14,17 +14,16 @@ function Results() {
 
   const getData = () => {
     if (filter) {
-      console.log("filter");
       axios
         .get(`http://localhost:4000/gsis/${filter}`)
         .then((data) => {
+          console.log(data);
           setGsiResults(data.data);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      console.log("no filter");
       axios
         .get("http://localhost:4000/allgsis")
         .then((data) => {
@@ -44,15 +43,15 @@ function Results() {
   return (
     <div>
       <Navbar></Navbar>
-      <h6>Search Results</h6>
-      <div>
+      <div className="results-header">Search Results</div>
+      <div className="results-container">
         {gsiResults &&
           gsiResults.map((gsi) => (
             <ResultCard
               id={gsi._id}
               name={gsi.name}
               rating={gsi.rating}
-              classes={gsi.classes}
+              classes={gsi.classesTaught}
             ></ResultCard>
           ))}
       </div>

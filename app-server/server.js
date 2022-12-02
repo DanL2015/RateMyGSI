@@ -28,9 +28,9 @@ app.get("/gsis/:filter", async (req, res) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  const data = await gsi
-    .find({ name: { $regex: ".*" + req.params.filter + ".*", $options: "i" } })
-    .limit(10);
+  const data = await gsi.find({
+    name: { $regex: ".*" + req.params.filter + ".*", $options: "i" },
+  });
   res.json(data);
 });
 
