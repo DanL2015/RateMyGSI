@@ -4,6 +4,7 @@ import "../../css/About.css";
 import Berkeley from "../../assets/Berkeley.png";
 import Image from "mui-image";
 
+
 function About() {
   return (
     <div>
@@ -38,6 +39,8 @@ function About() {
         </div>
         <div className="about-right">
           <Image src={Berkeley} width="102%" height="55%"/>
+          <p/>
+          <p className="about-text">Contact: ratemygsi@gmail.com</p>
         </div>
       </div>
     </div>
