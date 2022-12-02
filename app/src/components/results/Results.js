@@ -38,7 +38,7 @@ function Results() {
 
   useEffect(() => {
     getData();
-  }, []);
+  });
 
   return (
     <div>
