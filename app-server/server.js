@@ -7,7 +7,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
 const port = 4000;
-const user = require("./routes/user");
 const gsi = require("./model/Gsi");
 
 mongoose.connect("mongodb://127.0.0.1:27017/RateMyGSI-Database");
@@ -21,6 +20,13 @@ database.on("error", (err) => {
   console.error("db error", err);
 });
 
+app.get("/gsis/:filter", async (req, res) => {
+  const data = await gsi
+    .find({ name: { $regex: ".*" + req.params.filter + ".*", $options: "i" } })
+    .limit(10);
+  res.json(data);
+});
+
 app.get("/gsis", async (req, res) => {
   const data = await gsi.find();
   res.json(data);
@@ -30,7 +36,8 @@ app.use(bodyParser.json());
 
 //Add new GSI to database
 app.post("/gsi/post", async (req, res) => {
-  // console.log(req.body);
+  console.log(req.body);
+
   var newGsi = new gsi({
     name: req.body.name,
     email: req.body.email,
@@ -41,12 +48,10 @@ app.post("/gsi/post", async (req, res) => {
     pronouns: req.body.pronouns,
     major: req.body.major,
     semesters: req.body.semesters,
-    ratings: [],
+    comments: [],
   });
-  newGsi.save((err, res) => {
-    if (err) res.send(console.error(err));
-    res.send(res.name + " saved to database.");
-  });
+  newGsi.save();
+  res.send("Successfully saved to database");
 });
 
 //Get gsis by gsiid
@@ -58,11 +63,23 @@ app.get("/gsi/:gsiid", async (req, res) => {
 //Add new comment to the GSI with gsiid, requires request with a comment
 app.post("/comment/:gsiid/post", async (req, res) => {
   var curGsi = await gsi.findById(req.params.gsiid);
-  // console.log(curGsi.comments);
-  if (!curGsi.comments) {
-    curGsi.comments = [req.body.comment];
+  if (!curGsi.comments.length) {
+    let comment = req.body;
+    comment["id"] = 1;
+    curGsi.comments = [comment];
+    curGsi.ratingCount = 1;
+    curGsi.rating = comment.rating;
   } else {
-    curGsi.comments = [...curGsi.comments, req.body.comment];
+    let comment = req.body;
+    comment["id"] = curGsi.comments[curGsi.comments.length - 1].id + 1;
+    curGsi.comments = [...curGsi.comments, comment];
+    curGsi.ratingCount = curGsi.comments.length;
+    let average = 0.0;
+    for (let i = 0; i < curGsi.comments.length; i++) {
+      average += curGsi.comments[i].rating;
+    }
+    average = average / curGsi.comments.length;
+    curGsi.rating = average;
   }
   await curGsi.save();
   res.send("Comment added successfully");

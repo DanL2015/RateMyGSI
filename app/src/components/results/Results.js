@@ -13,15 +13,25 @@ function Results() {
   let { filter } = useParams();
 
   const getData = () => {
-    axios
-      .get(`http://localhost:4000/gsis/${filter}`)
-      .then((data) => {
-        setGsiResults(data.data);
-        console.log(data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (filter) {
+      axios
+        .get(`http://localhost:4000/gsis/${filter}`)
+        .then((data) => {
+          setGsiResults(data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      axios
+        .get(`http://localhost:4000/gsis`)
+        .then((data) => {
+          setGsiResults(data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   useEffect(() => {
