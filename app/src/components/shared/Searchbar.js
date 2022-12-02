@@ -22,7 +22,8 @@ function Search() {
         onKeyDown={(event) => {
           console.log(`Pressed keycode ${event.key}`);
           if (event.key === "Enter") {
-            navigate(`/results/${search}`);
+            if (search) navigate(`/results/${search}`);
+            else navigate("/results");
             event.preventDefault();
           }
         }}
