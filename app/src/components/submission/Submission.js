@@ -46,7 +46,9 @@ function Submission() {
           pronouns: pronouns,
           major: major,
           semesters: semesters,
-        })
+        }, { headers: {
+          "Access-Control-Allow-Origin": "*",
+        }})
         .then((res) => {
           console.log(res);
         })

@@ -41,11 +41,19 @@ function Profile() {
     else if (!newRating) setError("Please input a rating");
     else {
       axios
-        .post(`http://localhost:4000/comment/${profileid}/post`, {
-          name: newName,
-          rating: newRating,
-          review: newComment,
-        })
+        .post(
+          `http://localhost:4000/comment/${profileid}/post`,
+          {
+            name: newName,
+            rating: newRating,
+            review: newComment,
+          },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        )
         .then((res) => {
           getData();
           console.log(res);
