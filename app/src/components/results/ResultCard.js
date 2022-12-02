@@ -8,17 +8,17 @@ import "../../css/Results.css";
 function ResultCard({ id, name, rating, classes }) {
   return (
     <div className="card-container">
-      <Button variant="text" component={Link} to={`/profile/${id}`}>
-        <div>
-          <div className="card-header">{name}</div>
-          <div className="card-sub-container">
-            <Rating value={rating} precision={0.5} readOnly></Rating>
-            <div className="class-container">
-              {classes && classes.map((i) => <div>{i}</div>)}
-            </div>
-          </div>
-        </div>
-      </Button>
+     <Button variant="text" component={Link} to={`/profile/${id}`}>
+       <div>
+         <div className="card-header">{name}</div>
+         <div className="card-sub-container">
+           <Rating value={rating} precision={0.5} readOnly></Rating>
+           <div className="class-container">
+             {classes && classes.map((i) => <div>{i}</div>)}
+           </div>
+         </div>
+       </div>
+     </Button>
     </div>
   );
 }

@@ -14,15 +14,16 @@
 .results-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  margin-left: 5%;
 }
 
 .class-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: flex-start;
   font-family: "Roboto";
   color: black;
   font-size: 20px;
@@ -37,5 +38,5 @@
 
 .card-container {
   margin: 1em;
-  flex: 40%;
+  flex: 30%;
 }

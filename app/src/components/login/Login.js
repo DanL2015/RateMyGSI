@@ -9,9 +9,9 @@ function Login() {
       <div>
         <h1>Login</h1>
         <FormControl>
-          <TextField required label="Berkeley Email"></TextField>
-          <TextField required label="Berkeley Password"></TextField>
-          <Button variant="contained">Submit</Button>
+          <TextField required label="Berkeley Email" margin="normal"></TextField>
+          <TextField required label="Berkeley Password" margin="normal"></TextField>
+          <Button variant="contained" margin="normal">Submit</Button>
         </FormControl>
       </div>
     </div>
